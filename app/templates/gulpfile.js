@@ -6,6 +6,14 @@ var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
+<% if (includeFTP) { %>
+var FTPCredentials = {
+	host: '<%= FTPCredentials.host.replace(/\'/g, "\\\'") %>',
+	user: '<%= FTPCredentials.user.replace(/\'/g, "\\\'") %>',
+	dir: '<%= FTPCredentials.dir.replace(/\'/g, "\\\'") %>'
+};
+<% } %>
+
 gulp.task('styles', function () {
 	return gulp.src('app/styles/main.scss')
 		.pipe($.sourcemaps.init())

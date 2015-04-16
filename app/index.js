@@ -42,10 +42,35 @@ module.exports = yeoman.generators.Base.extend({
 			name: 'features',
 			message: 'What more would you like?',
 			choices: [{
+				name: 'JQuery',
+				value: 'includeJQuery   ',
+				checked: true
+			},{
 				name: 'Modernizr',
 				value: 'includeModernizr',
 				checked: true
+			},{
+				name: 'FTP Deployment',
+				value: 'includeFTP',
+				checked: false
 			}]
+		}];
+
+		var FTPPrompts = [{
+			type: 'input',
+			name: 'host',
+			message: 'FTP Host',
+			store: true
+		},{
+			type: 'input',
+			name: 'user',
+			message: 'FTP Username',
+			store: true
+		},{
+			type: 'input',
+			name: 'dir',
+			message: 'FTP Directory',
+			default: '/public_html/' + this.appname
 		}];
 
 		this.prompt(prompts, function (answers) {
@@ -57,9 +82,19 @@ module.exports = yeoman.generators.Base.extend({
 
 			// manually deal with the response, get back and store the results.
 			// we change a bit this way of doing to automatically do this in the self.prompt() method.
+			this.includeJQuery    = hasFeature('includeJQuery');
 			this.includeModernizr = hasFeature('includeModernizr');
+			this.includeFTP       = hasFeature('includeFTP');
 
-			done();
+			if (this.includeFTP) {
+				this.prompt(FTPPrompts, function (answers) {
+					this.FTPCredentials = answers;
+					done();
+				}.bind(this));
+			} else {
+				done();
+			}
+
 		}.bind(this));
 	},
 
@@ -83,7 +118,9 @@ module.exports = yeoman.generators.Base.extend({
 				dependencies: {}
 			};
 
-			bower.dependencies.jquery = '~2.1.1';
+			if (this.includeJQuery) {
+				bower.dependencies.jquery = '~2.1.1';
+			}
 
 			if (this.includeModernizr) {
 				bower.dependencies.modernizr = '~2.8.1';
