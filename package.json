@@ -1,10 +1,9 @@
 {
-  "name": "generator-gulp-webapp",
-  "version": "0.3.0",
+  "name": "generator-scriptist",
+  "version": "0.0.0",
   "description": "Scaffold out a front-end web app",
-  "license": "BSD",
   "repository": "yeoman/generator-gulp-webapp",
-  "author": "The Yeoman Team",
+  "author": "scriptist",
   "main": "app/index.js",
   "engines": {
     "node": ">=0.10.0",
@@ -17,14 +16,7 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator",
-    "web",
-    "app",
-    "front-end",
-    "h5bp",
-    "modernizr",
-    "jquery",
-    "gulp"
+    "yeoman-generator"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
@@ -38,6 +30,5 @@
     "gulp": ">=3.5.0"
   },
   "devDependencies": {
-    "mocha": "*"
   }
 }

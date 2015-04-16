@@ -1,0 +1,28 @@
+.alert {
+	$width: 300px;
+
+	background: #fdd;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	box-shadow: 0 0 2em rgba(#300, 0.2);
+	margin: 0;
+	padding: 1em 0 0.8em;
+	text-align: center;
+	width: $width;
+
+	position: fixed;
+	bottom: 0;
+	left: calc(50% - #{$width / 2});
+	z-index: 10000;
+}
+
+.alert.ie {
+	padding-left: 1em;
+	padding-right: 1em;
+	width: auto;
+
+	top: 0;
+	right: 0;
+	bottom: auto;
+	left: 0;
+}

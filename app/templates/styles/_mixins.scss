@@ -1,0 +1,37 @@
+@mixin vertical-center($selector) {
+	font-size: 0;
+
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		vertical-align: middle;
+	}
+
+	>#{$selector} {
+		display: inline-block;
+		font-size: 16px;
+		font-size: 1rem;
+		max-width: 100%;
+		vertical-align: middle;
+	}
+}
+
+
+@mixin breakpoint($point) {
+	@if $point == huge {
+		@media (max-width: 1600px) { @content; }
+	}
+	@else if $point == large {
+		@media (max-width: 1279px) { @content; }
+	}
+	@else if $point == medium {
+		@media (max-width: 767px)  { @content; }
+	}
+	@else if $point == small {
+		@media (max-width: 450px)  { @content; }
+	}
+	@else {
+		@media (max-width: $point)  { @content; }
+	}
+}
