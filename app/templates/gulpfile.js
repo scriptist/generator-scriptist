@@ -7,12 +7,15 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
 <% if (includeFTP) { %>
+// FTP requirements
+var ftp = require( 'vinyl-ftp' );
 var FTPCredentials = {
 	host: '<%= FTPCredentials.host.replace(/\'/g, "\\\'") %>',
 	user: '<%= FTPCredentials.user.replace(/\'/g, "\\\'") %>',
 	dir: '<%= FTPCredentials.dir.replace(/\'/g, "\\\'") %>'
 };
 <% } %>
+
 
 gulp.task('styles', function () {
 	return gulp.src('app/styles/main.scss')
@@ -136,6 +139,38 @@ gulp.task('wiredep', function () {
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
 	return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+});
+
+gulp.task('deploy', ['build'], function (cb) {
+	gulp.src('*')
+		.pipe($.prompt.prompt(
+			{
+				type: 'password',
+				name: 'password',
+				message: 'Deploying to ' +
+							FTPCredentials.user +
+							'@' +
+							FTPCredentials.host +
+							FTPCredentials.dir +
+							'\n' +
+							'    Enter FTP password:'
+			},
+			function(res) {
+				var conn = ftp.create({
+					host:     FTPCredentials.host,
+					user:     FTPCredentials.user,
+					password: res.password,
+					parallel: 10
+				});
+
+				var stream = gulp.src( 'dist/**/*', { base: 'dist', buffer: false } )
+					.pipe(conn.newer(FTPCredentials.dir)) // only upload newer files
+					.pipe(conn.dest(FTPCredentials.dir));
+
+				stream.on('end', cb);
+				stream.on('error', cb);
+			}
+		))
 });
 
 gulp.task('default', ['clean'], function () {
