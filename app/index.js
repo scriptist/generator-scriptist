@@ -70,7 +70,7 @@ module.exports = yeoman.generators.Base.extend({
 			type: 'input',
 			name: 'dir',
 			message: 'FTP Directory',
-			default: '/public_html/' + this.appname
+			default: '/public_html/' + process.cwd().split(path.sep).pop()
 		}];
 
 		this.prompt(prompts, function (answers) {
