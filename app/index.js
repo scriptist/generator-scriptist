@@ -151,6 +151,7 @@ module.exports = yeoman.generators.Base.extend({
 		},
 
 		app: function () {
+			this.mkdir('bower_components'); // This is needed if no bower components are included
 			this.mkdir('app');
 			this.mkdir('app/scripts');
 			this.mkdir('app/styles');

@@ -18,7 +18,7 @@ var FTPCredentials = {
 
 
 gulp.task('styles', function () {
-	return gulp.src('app/styles/main.scss')
+	return gulp.src('app/styles/**/*.scss')
 		.pipe($.sourcemaps.init())
 		.pipe($.sass({
 			outputStyle: 'nested', // libsass doesn't support expanded yet
@@ -142,18 +142,18 @@ gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
 });
 
 gulp.task('deploy', ['build'], function (cb) {
+	process.stdout.write('    Deploying to ' +
+							FTPCredentials.user +
+							'@' +
+							FTPCredentials.host +
+							FTPCredentials.dir +
+							'\n');
 	gulp.src('*')
 		.pipe($.prompt.prompt(
 			{
 				type: 'password',
 				name: 'password',
-				message: 'Deploying to ' +
-							FTPCredentials.user +
-							'@' +
-							FTPCredentials.host +
-							FTPCredentials.dir +
-							'\n' +
-							'    Enter FTP password:'
+				message: 'Enter FTP password:'
 			},
 			function(res) {
 				var conn = ftp.create({
