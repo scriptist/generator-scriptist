@@ -2,7 +2,7 @@
   "name": "generator-scriptist",
   "version": "0.0.1",
   "description": "Scaffold out a front-end web app",
-  "repository": "yeoman/generator-gulp-webapp",
+  "repository": "scriptist/generator-scriptist",
   "author": "scriptist",
   "main": "app/index.js",
   "engines": {
