@@ -1,6 +1,6 @@
 {
   "name": "generator-scriptist",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Scaffold out a front-end web app",
   "repository": "yeoman/generator-gulp-webapp",
   "author": "scriptist",
@@ -26,7 +26,6 @@
   },
   "peerDependencies": {
     "yo": ">=1.0.0",
-    "generator-mocha": ">=0.1.0",
     "gulp": ">=3.5.0"
   },
   "devDependencies": {
