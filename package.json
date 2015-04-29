@@ -10,7 +10,6 @@
     "npm": ">=1.3"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
   },
   "files": [
     "app"
