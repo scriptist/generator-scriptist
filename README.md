@@ -1,4 +1,4 @@
-# Web app generator [![Build Status](https://secure.travis-ci.org/yeoman/generator-gulp-webapp.svg?branch=master)](http://travis-ci.org/yeoman/generator-gulp-webapp)
+# Web app generator
 
 > [Yeoman](http://yeoman.io) generator that scaffolds out a front-end web app using [gulp](http://gulpjs.com/) for the build process
 
@@ -12,10 +12,11 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 * CSS Autoprefixing
 * Built-in preview server with BrowserSync
 * Automagically compile Sass with [libsass](http://libsass.org)
-* Automagically lint your scripts
+* Automagically compile CoffeeScript
 * Map compiled CSS to source stylesheets with source maps
 * Awesome image optimization
 * Automagically wire-up dependencies installed with [Bower](http://bower.io)
+* Deploy to FTP server using [vunyl-ftp](https://www.npmjs.com/package/vinyl-ftp)
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
 
@@ -30,18 +31,12 @@ If your favorite feature is missing and you really need Ruby Sass, you can alway
 ## Getting Started
 
 - Install dependencies: `npm install --global yo bower`
-- Install the generator: `npm install --global generator-gulp-webapp`
+- Install the generator: `npm install --global generator-scriptist`
 - Run `yo gulp-webapp` to scaffold your webapp
 - Run `gulp serve` to preview and watch for changes
 - Run `bower install --save <package>` to install frontend dependencies
 - Run `gulp` to build your webapp for production
-
-
-## Docs
-
-* [getting started](docs/README.md) with this generator
-* [recipes](docs/recipes/README.md) for integrating other popular technologies like CoffeeScript
-* [details](docs/bower.md) about our Bower setup
+- Run `gulp deploy` to deploy to an FTP server (if you enabled it in the initial set-up)
 
 
 ## Options
@@ -52,8 +47,6 @@ If your favorite feature is missing and you really need Ruby Sass, you can alway
   Skips the the message displayed after scaffolding has finished and before the dependencies are being installed.
 - `--skip-install`
   Skips the automatic execution of `bower` and `npm` after scaffolding has finished.
-- `--test-framework=<framework>`
-  Defaults to `mocha`. Can be switched for another supported testing framework like `jasmine`.
 
 
 ## Contribute

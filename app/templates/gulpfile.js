@@ -141,6 +141,7 @@ gulp.task('build', ['html', 'images', 'fonts', 'extras'], function () {
 	return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
+<% if (includeFTP) { %>
 gulp.task('deploy', ['build'], function (cb) {
 	process.stdout.write('    Deploying to ' +
 							FTPCredentials.user +
@@ -172,6 +173,7 @@ gulp.task('deploy', ['build'], function (cb) {
 			}
 		))
 });
+<% } %>
 
 gulp.task('default', ['clean'], function () {
 	gulp.start('build');
