@@ -16,7 +16,7 @@ Please see our [gulpfile.js](app/templates/gulpfile.js) for up to date informati
 * Map compiled CSS to source stylesheets with source maps
 * Awesome image optimization
 * Automagically wire-up dependencies installed with [Bower](http://bower.io)
-* Deploy to FTP server using [vunyl-ftp](https://www.npmjs.com/package/vinyl-ftp)
+* Deploy to FTP server using [vinyl-ftp](https://www.npmjs.com/package/vinyl-ftp)
 
 *For more information on what this generator can do for you, take a look at the [gulp plugins](app/templates/_package.json) used in our `package.json`.*
 
