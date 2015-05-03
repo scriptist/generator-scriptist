@@ -165,7 +165,7 @@ gulp.task('deploy', ['build'], function (cb) {
 				});
 
 				var stream = gulp.src( 'dist/**/*', { base: 'dist', buffer: false } )
-					.pipe(conn.newer(FTPCredentials.dir)) // only upload newer files
+					.pipe(conn.differentSize(FTPCredentials.dir)) // only upload newer files
 					.pipe(conn.dest(FTPCredentials.dir));
 
 				stream.on('end', cb);
