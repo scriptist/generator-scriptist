@@ -144,7 +144,7 @@ module.exports = yeoman.generators.Base.extend({
 				html: this.indexFile,
 				fileType: 'js',
 				optimizedPath: 'scripts/main.js',
-				sourceFileList: ['scripts/main.js']
+				sourceFileList: ['scripts/log.js']
 			});
 
 			this.write('app/index.html', this.indexFile);
@@ -157,7 +157,7 @@ module.exports = yeoman.generators.Base.extend({
 			this.mkdir('app/styles');
 			this.mkdir('app/images');
 			this.mkdir('app/fonts');
-			this.copy('scripts/main.coffee', 'app/scripts/main.coffee');
+			this.copy('scripts/log.coffee', 'app/scripts/log.coffee');
 		}
 	},
 

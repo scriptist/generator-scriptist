@@ -37,7 +37,6 @@ gulp.task('styles', function () {
 gulp.task('scripts', function () {
 	return gulp.src('app/scripts/**/*.coffee')
 		.pipe($.coffee())
-		.pipe($.concat('main.js'))
 		.pipe(gulp.dest('.tmp/scripts'))
 		.pipe(reload({stream: true}));
 });
