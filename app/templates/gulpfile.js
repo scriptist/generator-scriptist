@@ -40,11 +40,18 @@ gulp.task('scripts', function () {
 		.pipe(gulp.dest('.tmp/scripts'))
 		.pipe(reload({stream: true}));
 });
-
-gulp.task('html', ['styles', 'scripts'], function () {
+<% if (includeSwig) { %>
+gulp.task('swig', function () {
+	return gulp.src('app/[^_]*.swig')
+		.pipe($.swig({defaults: {cache: false}}))
+		.pipe(gulp.dest('.tmp'))
+		.pipe(reload({stream: true}));
+});
+<% } %>
+gulp.task('html', ['styles', 'scripts'<% if (includeSwig) { %>, 'swig'<% } %>], function () {
 	var assets = $.useref.assets({searchPath: ['.tmp', 'app', '.']});
 
-	return gulp.src('app/*.html')
+	return gulp.src(<% if (includeSwig) { %>[<% } %>'app/*.html'<% if (includeSwig) { %>, '.tmp/*.html']<% } %>)
 		.pipe(assets)
 		.pipe($.if('*.js', $.uglify()))
 		.pipe($.if('*.css', $.csso()))
@@ -77,7 +84,8 @@ gulp.task('fonts', function () {
 gulp.task('extras', function () {
 	return gulp.src([
 		'app/*.*',
-		'!app/*.html'
+		'!app/*.html'<% if (includeSwig) { %>,
+		'!app/*.swig'<% } %>
 	], {
 		dot: true
 	}).pipe(gulp.dest('dist'));
@@ -85,7 +93,7 @@ gulp.task('extras', function () {
 
 gulp.task('clean', require('del').bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'scripts', 'fonts'], function () {
+gulp.task('serve', ['styles', 'scripts', 'fonts'<% if (includeSwig) { %>, 'swig'<% } %>], function () {
 	browserSync({
 		notify: false,
 		port: 9000,
@@ -104,7 +112,8 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], function () {
 		'app/images/**/*',
 		'.tmp/fonts/**/*'
 	]).on('change', reload);
-
+<% if (includeSwig) { %>
+	gulp.watch('app/**/*.swig', ['swig']);<% } %>
 	gulp.watch('app/styles/**/*.scss', ['styles']);
 	gulp.watch('app/scripts/**/*.coffee', ['scripts']);
 	gulp.watch('app/fonts/**/*', ['fonts']);

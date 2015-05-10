@@ -2,9 +2,10 @@ Description:
     Creates a new basic front-end web application.
 
 Options:
-    Sass: Include Sass
-    Bootstrap: Include Bootstrap or Bootstrap Sass if Sass is included
-    Modernizr: Include Modernizr
+    JQuery
+    Modernizr
+    Swig
+    FTP Deployment
 
 Example:
     yo gulp-webapp

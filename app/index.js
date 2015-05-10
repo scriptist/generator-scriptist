@@ -43,12 +43,16 @@ module.exports = yeoman.generators.Base.extend({
 			message: 'What more would you like?',
 			choices: [{
 				name: 'JQuery',
-				value: 'includeJQuery   ',
+				value: 'includeJQuery',
 				checked: true
 			},{
 				name: 'Modernizr',
 				value: 'includeModernizr',
 				checked: true
+			},{
+				name: 'Swig',
+				value: 'includeSwig',
+				checked: false
 			},{
 				name: 'FTP Deployment',
 				value: 'includeFTP',
@@ -84,6 +88,7 @@ module.exports = yeoman.generators.Base.extend({
 			// we change a bit this way of doing to automatically do this in the self.prompt() method.
 			this.includeJQuery    = hasFeature('includeJQuery');
 			this.includeModernizr = hasFeature('includeModernizr');
+			this.includeSwig      = hasFeature('includeSwig');
 			this.includeFTP       = hasFeature('includeFTP');
 
 			if (this.includeFTP) {
@@ -147,7 +152,9 @@ module.exports = yeoman.generators.Base.extend({
 				sourceFileList: ['scripts/log.js']
 			});
 
-			this.write('app/index.html', this.indexFile);
+			var filename = this.includeSwig ? 'index.swig' : 'index.html';
+
+			this.write('app/' + filename, this.indexFile);
 		},
 
 		app: function () {

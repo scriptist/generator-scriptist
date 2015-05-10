@@ -28,7 +28,9 @@
 			<p>You now have</p>
 			<ul>
 				<li>HTML5 Boilerplate</li>
-				<li>Sass</li><% if (includeModernizr) { %>
+				<li>Sass</li><% if (includeSwig) { %>
+				<li>Swig</li><% } %><% if (includeJQuery) { %>
+				<li>jQuery</li><% } %><% if (includeModernizr) { %>
 				<li>Modernizr</li><% } %>
 			</ul>
 		</div>
