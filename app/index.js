@@ -143,7 +143,7 @@ module.exports = yeoman.generators.Base.extend({
 			this.indexFile = this.appendFiles({
 				html: this.indexFile,
 				fileType: 'js',
-				optimizedPath: 'scripts/main.js',
+				optimizedPath: '/scripts/main.js',
 				sourceFileList: ['scripts/log.js']
 			});
 
